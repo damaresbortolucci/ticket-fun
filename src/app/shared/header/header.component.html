@@ -1,0 +1,66 @@
+<header class="header-container">
+    <nav class="header navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow">
+        <h1 routerLink="/home">
+            Ticket
+            <i class="bi bi-ticket-perforated-fill"></i>
+            Fun
+        </h1>
+
+        <div>
+            <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" data-toggle="collapse"
+                data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngbCollapse]="isCollapsed">
+                <ul class="menu-links navbar-nav flex-grow-1" [ngSwitch]="accessRole()">
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item" *ngSwitchCase="false">
+                        <a class="nav-link" [routerLink]="['produtos/']" routerLinkActive="active">
+                            Produtos
+                        </a>
+                    </li>
+                    <li class="nav-item" *ngSwitchCase="false">
+                        <a class="nav-link" [routerLink]="['usuarios/']" routerLinkActive="active">
+                            Usuários
+                        </a>
+                    </li>
+
+                    <div [ngSwitch]="userLog()">
+                        <li class="nav-item" *ngSwitchCase="true">
+                            <a class="nav-link" routerLink="/login" routerLinkActive="active">
+                                Login
+                            </a>
+                        </li>
+                        <li class="nav-item" *ngSwitchCase="false">
+                            <a class="nav-link" href="javascript:void(0)" (click)="logout()">
+                                <i class="bi bi-box-arrow-in-right"></i>
+                                <!-- Logout -->
+                            </a>
+                        </li>
+                    </div>
+
+                    <li class="nav-item cart-section" routerLink="/cart" *ngSwitchCase="true">
+                        <a class="nav-link position-relative">
+                            <i class="bi bi-cart-fill"></i>
+                            <span class="position-absolute top-1 start-99 translate-middle badge rounded-pill bg-danger">
+                                {{items}}
+                                <span class="visually-hidden">Carrinho de compras</span>
+                            </span>         
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<!--     <div class="sub-nav" *ngIf="home">
+        <span><a>mais vendidos</a></span>
+        <span><a>Lançamentos</a></span>
+        <span><a>Pré-venda</a></span>
+    </div> -->
+</header>

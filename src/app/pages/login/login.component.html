@@ -1,0 +1,62 @@
+<div class="container-login">
+    <div class="container__form-login">
+        <div>
+            <h1>Login</h1>
+        </div>
+
+        <div>
+            <form class="form__login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="group-input"> 
+                  <input type="text" id="nome" formControlName="email" required />
+                  <label for="nome"> Email </label>
+                </div>
+              
+                <div class="group-input">
+                  <input type="password" id="senha" formControlName="senha" required />
+                  <label for="senha"> Senha </label>
+                </div>
+              
+                <div class="btn-form">
+                    <button class="" type="submit"> 
+                        Enviar
+                   </button>
+                </div>
+              </form>
+            <!-- <form class="form-container"
+                [formGroup]="loginForm" 
+                (ngSubmit)="onSubmit()"
+            >
+             
+                <mat-form-field appearance="fill">
+                    <mat-label>E-mail</mat-label>
+                    <input 
+                        matInput 
+                        placeholder="nome@exemplo.com" 
+                        [formControl]="email" 
+                        formControlName="email" 
+                        required>
+                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill">
+                    <mat-label>Senha</mat-label>
+                    <input 
+                        matInput 
+                        [type]="hide ? 'password' : 'text'" 
+                        formControlName="senha" 
+                        required>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field> 
+            </form> -->
+        </div>
+    
+        <div class="link-redirect">
+            <span>Ainda não tem cadastro?</span>
+            <a routerLink="/registro">clique aqui</a> 
+        </div>
+        
+    </div>
+</div>

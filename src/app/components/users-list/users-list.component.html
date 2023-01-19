@@ -1,0 +1,66 @@
+<div class="container__users-list">
+    <div class="container-search">
+        <form>
+        	<div class="mb-3 row">
+        		<label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Buscar usuário:</label>
+        		<div class="col-xs-3 col-sm-auto">
+        			<input id="table-filtering-search" class="form-control" type="text" [formControl]="searchField"  placeholder="Digite o nome"/>
+        		</div>
+        	</div>
+        </form>
+        <button class="btn btn-warning btn-new" routerLink="/registro">
+            Novo Usuário
+        </button>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+        	<thead>
+        		<tr>
+        			<th scope="col">Usuário</th>
+        			<th scope="col">E-mail</th>
+        			<th scope="col">Permissão</th>
+                    <th scope="col"></th>
+                    <!-- <th scope="col"></th> -->
+        		</tr>
+        	</thead>
+        	<tbody class="align-middle">
+        		<tr *ngFor="let user of users">
+                    <td>
+                        <ngb-highlight [result]="user.nome | titlecase"></ngb-highlight>
+                    </td>
+        			<td>
+                        <ngb-highlight [result]="user.email"></ngb-highlight>
+                    </td>
+        			<td>
+                        <ngb-highlight [result]="user.role"></ngb-highlight>
+                    </td>
+                    <td class="btn-acts">
+                        <button class="btn btn-secondary" routerLink="editar/{{user._id}}">
+                            Editar
+                        </button>
+                        <button class="btn btn-danger" (click)="openDeleteModal(contentDelete)">
+                            Excluir
+                        </button>
+                    </td>
+             <!--        <td>
+                       
+                    </td> -->
+    
+                    <ng-template #contentDelete let-modal>
+                        <div class="modal-header">
+                          <h4 class="modal-title">Excluir usuário</h4>
+                          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Tem certeza de que deseja excluir {{user.nome  | titlecase }} da base de dados?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cancelar</button>
+                          <button type="button" class="btn btn-danger" (click)="deleteUser(user)">Deletar</button>
+                        </div>
+                    </ng-template>
+        		</tr>
+        	</tbody>   
+        </table>
+    </div>
+</div>

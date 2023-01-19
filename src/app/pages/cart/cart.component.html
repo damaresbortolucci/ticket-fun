@@ -1,0 +1,30 @@
+<div class="container__cart">
+    <div class="data__cart">
+        <div>
+            <div class="items__cart" *ngFor="let product of productsCart">
+                <img src="{{ product.image }}" class="me-2" style="width: 90px" />
+                <span>
+                    {{product.title | titlecase}}
+                </span>
+                <span>
+                    {{product.price * product.quantity | currency:'BRL':'symbol':'1.2-2':'pt'}}
+                </span>
+                <div class="quantity-input">
+                    <button class="minus" (click)="removeItem(product)">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <input type="number" id="" class="quantity" step="1" min='1' max='{{product.stock}}' name="quantity" [(ngModel)]="product.quantity" inputmode="numeric">
+                    <button class="plus" (click)="addItem(product)">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                </div>
+                <button class="btn__trash" (click)="deleteProduct(product)">
+                    <i class="bi bi-trash3"></i>
+                </button>
+            </div>
+        </div>
+        
+        <app-sumary-details [products]="productsCart" [subTotal]="subTotal"></app-sumary-details>
+        
+    </div>
+</div>

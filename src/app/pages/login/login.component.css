@@ -1,0 +1,95 @@
+.container-login{
+    height: calc(100vh - 195px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container__form-login{
+    width: 90%;
+    max-width: 500px;
+   /*  border: 1px solid rgb(227, 227, 227); */
+    border-radius: 12px;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;    
+}
+
+.container__form-login h1{
+    text-align: center;
+    margin-bottom: 70px;
+    color: rgb(133, 133, 133);
+}
+
+
+/* div com input e label */
+.group-input{
+    position: relative;
+    width: 60%;
+    margin: auto;
+}
+
+.group-input input{
+    width: 100%;
+    padding: 5px;
+    outline: none;
+    border: none;
+    margin-bottom: 30px;
+    border-bottom: 2px solid rgb(200,200,200);
+}
+
+.group-input label{
+    position: absolute;
+    left: 0;
+    top: 5px;
+    color: rgb(133, 133, 133);
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* .group-input input:focus,
+.group-input input:valid{
+    border-bottom: 2px solid rgb(254, 78, 113);
+    transition: all 0.3s ease-in-out;
+} */
+
+
+.group-input input:focus ~ label,
+.group-input input:valid ~ label{
+    transform: translateY(-24px);
+    font-size: 14px;
+    color: rgb(254, 78, 113);
+}
+
+.btn-form{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-form button{
+    text-align: center;
+    border-radius: 25px;
+    padding: 6px;
+    width: 100px;
+    border: none;
+    background-color: rgb(254, 78, 113);
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-form button:hover{
+    background-color: rgb(211, 44, 77);
+}
+
+.link-redirect{
+    display: flex;
+    gap: 0 20px;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.link-redirect a{
+    text-decoration: none;
+    color: rgb(254, 78, 113);
+}

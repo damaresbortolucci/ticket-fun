@@ -1,0 +1,74 @@
+<div class="container__product-list">
+    <div class="container-search">
+        <form>
+        	<div class="mb-3 row">
+        		<label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Buscar produto:</label>
+        		<div class="col-xs-3 col-sm-auto">
+        			<input id="table-filtering-search" class="form-control" type="text" [formControl]="searchField"  placeholder="Digite o nome"/>
+        		</div>
+        	</div>
+        </form>
+        <button class="btn btn-warning btn-new" routerLink="/cadastro">Novo Produto</button>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+        	<thead>
+        		<tr>
+        			<th scope="col">Foto</th>
+        			<th scope="col">Título</th>
+        			<th scope="col">Descrição</th>
+        			<th scope="col">Preço</th>
+                    <th scope="col">Estoque</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+        		</tr>
+        	</thead>
+        	<tbody class="align-middle">
+        		<tr *ngFor="let product of products">
+        			<td>
+                        <img
+                            src="{{ product.image }}"
+        					class="me-2"
+        					style="width: 50px"
+        				/>	
+        			</td>
+                    <td>
+                        <ngb-highlight [result]="product.title | titlecase"></ngb-highlight>
+                    </td>
+        			<td>
+                        <ngb-highlight [result]="product.description"></ngb-highlight>                 
+                    </td>
+        			<td>
+                        <span>{{product.price | currency:'BRL':'symbol':'1.2-2':'pt'}}</span>
+                    </td>
+                    <td>
+                        <ngb-highlight [result]='product.stock.toString()'></ngb-highlight>
+                    </td>
+                    <td>
+                        <button class="btn btn-secondary" routerLink="editar/{{product._id}}">
+                            Editar
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="openDeleteModal(contentDelete)">
+                            Excluir
+                        </button>
+                    </td>
+                    <ng-template #contentDelete let-modal>
+                        <div class="modal-header">
+                          <h4 class="modal-title">{{product.title  | titlecase }}</h4>
+                          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Tem certeza de que deseja excluir esse produto da base de dados?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cancelar</button>
+                          <button type="button" class="btn btn-danger" (click)="deleteProduct(product)">Deletar</button>
+                        </div>
+                    </ng-template>
+        		</tr>
+        	</tbody>   
+        </table>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="container-create">
+      <div class="form-create">
+          <h1> {{ requestType == "post"? "Cadastrar " : "Atualizar " }} Produto</h1>
+          <!-- <app-product-form></app-product-form -->
+  
+          <form class="product-form" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                  <label for="image" class="form-label">URL da imagem</label>
+                  <input type="text" class="form-control" id="image" aria-describedby="emailHelp" formControlName="image">
+              </div>
+              <div class="mb-3">
+                  <label for="title" class="form-label">Título</label>
+                  <input type="text" class="form-control" id="title" formControlName="title">
+              </div>
+              <div class="mb-3">
+                  <label for="description" class="form-label">Descrição</label>
+                  <input type="text" class="form-control" id="description" formControlName="description">
+              </div>
+              <div class="mb-3">
+                  <label for="price" class="form-label">Preço</label>
+                  <input type="text" class="form-control" id="price" formControlName="price">
+              </div>
+              <div class="mb-3">
+                  <label for="quantity" class="form-label">Estoque</label>
+                  <input type="text" class="form-control" id="stock" formControlName="stock">
+              </div>
+              <button class="submit-btn btn btn-light" type="submit">
+                {{ requestType == "post"? "Cadastrar" : "Atualizar" }}
+              </button>
+          </form>
+      </div>
+  </div>

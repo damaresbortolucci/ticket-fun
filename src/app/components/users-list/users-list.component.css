@@ -1,0 +1,30 @@
+.container__users-list{
+    width: 80%;
+    max-width: 900px;
+    height: 100%;
+    min-height: calc(100vh - 195px);
+    margin: auto;
+    padding: 100px 0;
+}
+
+.container-search{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.container-search label{
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.btn-new{
+    /* height: 38px; */
+}
+
+.btn-acts{
+    display: flex;
+    justify-content: end;
+    gap: 18px;
+}

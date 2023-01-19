@@ -1,0 +1,81 @@
+<!--   <ngb-carousel class="carrossel-item">
+    <ng-template ngbSlide class="teste2">
+      <div class="picsum-img-wrapper">
+        <img src="https://thumbcdn-a.hotelurbano.net/znpJ0NZvvMxLon9cTpqZkhFvfLE=/1240x0/center/middle/filters:format(webp):strip_icc():quality(80)/http://s3.amazonaws.com/legado-prod/prod/ofertas/imagens/2022/03/18/11/10/Elevador_Lacerda__Salvador.jpg" alt="Random first slide" />
+      </div>
+      <div class="carousel-caption">
+        <h3>First slide label</h3>
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide class="teste2">
+      <div class="picsum-img-wrapper">
+        <img src="https://thumbcdn-a.hotelurbano.net/znpJ0NZvvMxLon9cTpqZkhFvfLE=/1240x0/center/middle/filters:format(webp):strip_icc():quality(80)/http://s3.amazonaws.com/legado-prod/prod/ofertas/imagens/2022/03/18/11/10/Elevador_Lacerda__Salvador.jpg" alt="Random second slide" />
+      </div>
+      <div class="carousel-caption">
+        <h3>Second slide label</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide class="teste2">
+      <div class="picsum-img-wrapper">
+        <img src="https://thumbcdn-a.hotelurbano.net/4U-fJlgvMXP4ehQR2HEiMXbQb5E=/1240x0/center/middle/filters:format(webp):strip_icc()/http://s3.amazonaws.com/legado-prod/prod/ofertas/imagens/2022/12/13/16/27/aerial_panorama_of_botafogo_bay_rio_de_janeiro.jpg_s_1024x1024_w_is_k_20_c_CzlSV_x2e_h62hT2v_BVMzoilWRZHmEpWyDdQf_tZwM_.jpg" alt="Random third slide" />
+      </div>
+      <div class="carousel-caption">
+        <h3>Third slide label</h3>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+
+  <div class="information">
+
+  </div> -->
+
+
+
+<div class="product-container">
+
+  <!-- <h2>Mais Vendidos</h2> -->
+
+  <div class="cards-list">
+    <div class="card card-item" style="width: 18rem;" *ngFor="let product of products" [ngSwitch]="accessRole()">
+      <img src="{{ product.image }}" height="165px" width="250px" class="card-img-top" alt="Foto de {{ product.title}}">
+      <div class="card-body">
+        <h5 class="card-title">
+          {{ product.title | titlecase }}
+        </h5>
+        <p class="card-text">
+          {{ product.description }}
+        </p>
+        <div>
+          <span>Valor:</span> 
+          <span>
+            {{ product.price | currency:'BRL':'symbol':'1.2-2':'pt'}}
+          </span>
+        </div>
+        <div *ngSwitchCase="false">
+          <span *ngIf="product.stock == 0 ">
+            Sem Estoque
+          </span>
+        </div>
+        <span>Em estoque: {{product.stock}}</span>
+    
+        <div class="btn-shop" *ngSwitchCase="true">
+          <div class="quantity-input">
+            <button class="minus" (click)="removeItem(product)">
+              <i class="bi bi-dash"></i>
+            </button>
+  
+            <input type="number" id="" class="quantity" step="1" min='1' max='{{product.stock}}' name="quantity" [(ngModel)]="product.quantity" inputmode="numeric">
+  
+            <button class="plus" (click)="addItem(product)">
+              <i class="bi bi-plus"></i>
+            </button>
+          </div>
+          <button class="btn-card-home" (click)="addToCart(product)">Comprar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

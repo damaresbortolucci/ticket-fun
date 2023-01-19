@@ -1,0 +1,47 @@
+.footer-container{
+    /* background-color: #3F3B47; */
+    background-color: rgb(39, 39, 39);
+    height: 110px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-shrink: 0;
+    gap: 10px;
+    align-items: center;
+    color: #a8a6a6;
+    font-weight: 500;
+    font-size: 18px;
+    text-transform: capitalize;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 0;
+}
+
+.footer-container a{
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.footer-container a:hover{
+    color: #ff4081;
+    color: rgb(254, 78, 113);
+}
+
+.footer-container :nth-child(2){
+    text-align: center;
+}
+
+.contact-icons{
+    display: flex;
+    gap: 20px;
+    font-size: 22px;
+}
+
+.contact-icons i{
+    color: rgb(200, 200, 200);
+}
+
+.contact-icons i:hover{
+    color: rgb(254, 78, 113);
+    transition: all 0.3s ease-in-out;
+}
