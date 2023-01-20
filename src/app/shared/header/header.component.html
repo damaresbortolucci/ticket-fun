@@ -14,7 +14,7 @@
             </button>
 
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngbCollapse]="isCollapsed">
-                <ul class="menu-links navbar-nav flex-grow-1" [ngSwitch]="accessRole()">
+                <ul class="menu-links navbar-nav flex-grow-1"  [ngSwitch]="accessRole()">
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">
                             Home
@@ -58,9 +58,5 @@
             </div>
         </div>
     </nav>
-<!--     <div class="sub-nav" *ngIf="home">
-        <span><a>mais vendidos</a></span>
-        <span><a>Lançamentos</a></span>
-        <span><a>Pré-venda</a></span>
-    </div> -->
+
 </header>

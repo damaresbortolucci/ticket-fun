@@ -23,7 +23,7 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private tokenService: TokenService,
-    private route: Router,
+    private route: Router
   ) {}
 
 
@@ -48,10 +48,8 @@ export class LoginComponent {
       this.loginForm.value.senha ?? ''
     ).subscribe({
       next: (retorno) => {
-        console.log(retorno);
-        
         this.tokenService.persistToken((retorno as any).accessToken);
-        this.authService.persistCredential((retorno as any).role);
+        this.authService.persistUser((retorno as any));
         this.route.navigate(["/home"]);
       },
       error: (error) => {

@@ -10,7 +10,6 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { SumaryDetailsComponent } from './sumary-details/sumary-details.component';
-import { CardCartComponent } from './card-cart/card-cart.component';
 
 
 @NgModule({
@@ -19,7 +18,6 @@ import { CardCartComponent } from './card-cart/card-cart.component';
     ProductsListComponent,
     UsersListComponent,
     SumaryDetailsComponent,
-    CardCartComponent
   ],
   imports: [
     CommonModule,

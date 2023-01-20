@@ -1,15 +1,11 @@
 .header-container{
-    /* background-color: #3F3B47; */
     background-color: rgb(39, 39, 39);
-    /* height: 80px; */
-    /* padding: 0 40px; */
     display: flex;
     flex-direction: column;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 100;
-
 }
 
 .header-container .header{
@@ -24,7 +20,6 @@
     margin: 0;
     font-size: 28px;
     color: rgb(254, 78, 113);
-   /*  color: #ff4081; */
    display: flex;
    align-items: center;
    gap: 8px;
@@ -53,7 +48,6 @@
     gap: 8px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    
 }
 
 .menu-links .nav-item .nav-link{
@@ -80,8 +74,6 @@
 
 .sub-nav span:hover{
     color: rgb(163, 161, 161);
-    /* font-weight: bold; */
     transition: all 0.3s ease-in-out;
-   /*  letter-spacing: 0.06em; */
-   cursor: pointer;
+    cursor: pointer;
 }

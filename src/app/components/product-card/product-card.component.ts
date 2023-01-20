@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from '../../services/product.services';
 import Product from 'src/app/models/Product';
+import User from 'src/app/models/User';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ProductCardComponent implements OnInit {
 
   products: Product[] = [];
   hasError: boolean = false;
-  role: string="";
+  user?: any;
 
   value: number =1;
 
@@ -59,7 +60,7 @@ export class ProductCardComponent implements OnInit {
 
   
   accessRole(): boolean{
-    this.role = this.authService.getCredential();
-    return this.role == 'cliente' || this.role == '';
+    this.user = this.authService.getUser();
+    return this.user?.role == 'cliente' || this.user?.role == null;
   }
 }

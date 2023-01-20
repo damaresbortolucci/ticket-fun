@@ -1,22 +1,24 @@
 import { TokenService } from './token.service';
-import { UsersService } from './users.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  role = localStorage.getItem("role") ?? '';
+  role:any;
 
   constructor(
     private router: Router, 
     private http: HttpClient, 
-    private tokenService: TokenService
-  ) {}
+    private tokenService: TokenService,
+    ) {   
+      if(localStorage.getItem("user") != null)
+        this.role = JSON.parse(localStorage.getItem("user")as string)
+    }
 
 
   validaLogin = (token: string) =>
@@ -41,7 +43,6 @@ export class AuthService {
     }
 
     this.validaLogin(this.tokenService.token).subscribe((retorno) => {
-      /* console.log(route.url[0].toString()); */
 
       if (
         route.url[0].path.includes('usuarios') &&
@@ -63,17 +64,17 @@ export class AuthService {
   }
 
   
-  persistCredential(role: string) {
-    localStorage.setItem('role', role);
+  persistUser(role: any) {
+    localStorage.setItem('user', JSON.stringify(role));
     this.role = role;
   }
 
-  getCredential(): string {
-    this.role = localStorage.getItem("role") ?? '';
+  getUser() {
+    this.role = JSON.parse(localStorage.getItem("user") as string);
     return this.role;
   }
 
-  clearCredential(){
+  clearSession(){
     localStorage.clear();
   }
 }

@@ -4,8 +4,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthService } from './services/auth.service';
-import { AccessguardService } from './services/accessguard.service';
-
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductFormComponent } from './shared/product-form/product-form.component';
@@ -54,7 +52,7 @@ const routes: Routes = [
   { path:"login", component: LoginComponent},
   { path:"registro", component: RegisterComponent },
 
-  { path:"cart", component: CartComponent },
+  { path:"cart", component: CartComponent},
 
   { path:"", redirectTo: "home", pathMatch: "full" },
   { path:"**", component: PageNotFoundComponent }

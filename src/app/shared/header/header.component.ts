@@ -1,3 +1,4 @@
+import { RoleService } from './../../services/role.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { TokenService } from '../../services/token.service';
@@ -12,9 +13,8 @@ import { CartService } from 'src/app/services/cart.service';
 export class HeaderComponent implements OnInit {
 
   token: string = "";
-  role: string = "";
+  role?: any = '';
   items: any = 0;
-  home: boolean = true;
   public isCollapsed: boolean;
 
 
@@ -22,19 +22,22 @@ export class HeaderComponent implements OnInit {
     private tokenService: TokenService, 
     private router: Router,
     private authService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
+    private roleService: RoleService
   ){
     this.isCollapsed = true;
   }
 
 
   ngOnInit(): void {
+   
+    let cart = JSON.parse(localStorage.getItem('cart') as string)
+    if(cart!=null)
+      this.items = cart.quantity;
+
     this.cartService.getItemsCart().subscribe(
       (product) => {this.items = product.quantity}
     );
-
-    let cart = JSON.parse(localStorage.getItem('cart') as string)
-    this.items = cart.quantity;
   }
 
 
@@ -45,13 +48,12 @@ export class HeaderComponent implements OnInit {
 
   
   logout(){
-    this.tokenService.clearToken();
-    this.authService.clearCredential();
+    this.authService.clearSession();
     this.router.navigate(['/home']);
   }
 
   accessRole(): boolean{
-    this.role = this.authService.getCredential();
-    return this.role == 'cliente' || this.role == '';
+    this.role = this.authService.getUser();       
+    return this.role?.role == 'cliente' || this.role?.role == null;
   }
 }

@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
 
   id: string = "";
-  role: string = "";
+  user: any;
   @Input() requestType: string = "post";
 
   constructor(
@@ -51,7 +51,6 @@ export class RegisterComponent implements OnInit {
     // Com os dados em mãos, preenchemos o form.
     this.id = this.activatedRoute.snapshot.params["id"];
 
-    // O id existe entao, estamos usando a tela para edição.
     if (this.id) {
       this.requestType = "put"
       this.usersService.retornaUsuario(this.id).subscribe({
@@ -71,7 +70,6 @@ export class RegisterComponent implements OnInit {
  
 
   onSubmit() {
-    // Aqui vamos enviar os dados para backend.
     const usuario = new User(
       this.cadastroForm.value.nome ?? '',
       this.cadastroForm.value.email ?? '',
@@ -79,9 +77,6 @@ export class RegisterComponent implements OnInit {
       this.cadastroForm.value.role || "cliente",
       ''
     );
-
-      console.log(usuario.role);
-      
 
     if (this.id) {
       usuario._id = this.id;
@@ -97,8 +92,7 @@ export class RegisterComponent implements OnInit {
 
 
   accessRole(): boolean{
-    this.role = this.authService.getCredential();
-    return this.role == 'administrador' || this.role == 'vendedor' ;
+    this.user = this.authService.getUser();
+    return this.user.role == 'cliente' || this.user.role == '';
   }
-
 }

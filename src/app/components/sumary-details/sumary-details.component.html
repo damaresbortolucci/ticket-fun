@@ -24,22 +24,35 @@
             </li>
             <li>
                 <span>Taxas</span>
-                <span>{{tax | currency:'BRL':'symbol':'1.2-2':'pt'}}</span>
+                <span>{{subTotal * 0.05 | currency:'BRL':'symbol':'1.2-2':'pt'}}</span>
             </li>
             <li>
                 <span>Total</span>
-                <span>{{subTotal + tax | currency:'BRL':'symbol':'1.2-2':'pt'}}</span>
+                <span>{{subTotal + (subTotal * 0.05) | currency:'BRL':'symbol':'1.2-2':'pt'}}</span>
             </li>
         </ul>
     </div>
     <div class="sumary__btn">
-        <button type="submit" *ngIf="products?.length!=0">
+        <button type="submit" *ngIf="products?.length!=0" (click)="openDeleteModal(contentDelete)">
             finalizar compra 
         </button>
         <button type="submit" [routerLink]="['/home']">
             {{products?.length==0 ? 'voltar para home' : 'continar comprando'}} 
         </button>
     </div>
+
+    <ng-template #contentDelete let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Pagamento</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <p>Você será direcionado(a) para a tela de pagamento.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" (click)="deleteProduct()">Continuar</button>
+        </div>
+    </ng-template>
 </div>
 
 

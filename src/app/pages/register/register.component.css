@@ -71,8 +71,10 @@
 }
 
 .btn-form{
-    text-align: center;
     margin-top: 30px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
 }
 
 .btn-form button{

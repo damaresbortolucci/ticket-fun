@@ -23,9 +23,4 @@ export class TokenService {
     this.token = localStorage.getItem("token") ?? '';
     return this.token;
   }
-
-  clearToken(){
-    localStorage.clear();
-  }
-
 }

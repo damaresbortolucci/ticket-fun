@@ -10,14 +10,14 @@ import Cart from '../models/Cart';
 export class CartService {
 
   cartLocalStorage:Product[] = [];
-  cartLocal:any;
-  produtoAddSource = new Subject<any>();
+  cart:any;
+  cartObservable = new Subject<any>();
 
   constructor() {}
 
 
   getItemsCart(): Observable<any>{
-    return this.produtoAddSource.asObservable();
+    return this.cartObservable.asObservable();
   }
 
 
@@ -28,8 +28,8 @@ export class CartService {
     else{ 
       var id = product._id
       let index:number = -1;
-      this.cartLocal = JSON.parse(localStorage.getItem('cart') as string);
-      this.cartLocalStorage = this.cartLocal.product
+      this.cart = JSON.parse(localStorage.getItem('cart') as string);
+      this.cartLocalStorage = this.cart.product
       
       //refatorar
       for(let i=0; i<this.cartLocalStorage.length; i++){
@@ -43,7 +43,6 @@ export class CartService {
       if(index == -1)
         this.cartLocalStorage.push(product) 
     }
-    
     this.updateCart(this.cartLocalStorage)
   }
 
@@ -59,14 +58,18 @@ export class CartService {
 
     localStorage.setItem('cart', JSON.stringify(newCart));
 
-    this.produtoAddSource.next(JSON.parse(localStorage.getItem('cart') as string)); 
+    this.cartObservable.next(JSON.parse(localStorage.getItem('cart') as string)); 
   }
 
 
   deleteProductCart(product: Product){
-    this.cartLocal = JSON.parse(localStorage.getItem('cart') as string);
-    let newCart = this.cartLocal.product.filter((prod:any) => prod._id !==  product._id);
+    this.cart = JSON.parse(localStorage.getItem('cart') as string);
+    let newCart = this.cart.product.filter((prod:any) => prod._id !==  product._id);
 
     this.updateCart(newCart)
+  }
+
+  clearCart(){
+    localStorage.removeItem('cart');
   }
 }

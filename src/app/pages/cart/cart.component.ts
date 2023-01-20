@@ -15,16 +15,15 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private router: Router, 
   ){}
 
   ngOnInit(): void {
-
     let cart = JSON.parse(localStorage.getItem('cart') as string)
-    this.productsCart = cart.product;
-    this.subTotal = cart.valueTotal;
-
-    
+    if(cart!=null){
+      this.productsCart = cart.product;
+      this.subTotal = cart.valueTotal;
+    }
+ 
     this.cartService.getItemsCart().subscribe(
       (product) => {
         this.productsCart = product.product

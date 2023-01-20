@@ -40,7 +40,6 @@ registerLocaleData(localePt);
     NgbModule,
     NgbTypeaheadModule,
     AppRoutingModule,
-   
   ],
   exports: []
 })
